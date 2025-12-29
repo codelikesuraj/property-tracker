@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/abdulbaki/Library/Application Support/Herd/bin/php83",
+            "args": [
+                "/Users/abdulbaki/Code/php/property-tracker/artisan",
+                "boost:mcp"
+            ]
+        },
+        "herd": {
+            "command": "/Users/abdulbaki/Library/Application Support/Herd/bin/php83",
+            "args": [
+                "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+            ],
+            "env": {
+                "SITE_PATH": "/Users/abdulbaki/Code/php/property-tracker"
+            }
+        }
+    }
+}
