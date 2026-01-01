@@ -26,7 +26,9 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->globalSearch(false)
             ->id('admin')
+            ->brandName(env('BRAND_NAME', config('APP_NAME')))
             ->domain('admin.propertytracker.test')
             ->login()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
