@@ -17,7 +17,7 @@ class ProjectForm
                     ->required()
                     ->unique(),
                 Textarea::make('description')
-                    ->rows(4),
+                    ->rows(5),
             ]);
     }
 }

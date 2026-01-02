@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Filament\Resources\Projects\Tables;
+namespace App\Filament\Resources\Properties\Tables;
 
 use App\Filament\Helpers\Columns;
-use Filament\Actions\DeleteAction;
+use App\Filament\Resources\Projects\ProjectResource;
+use App\Filament\Resources\Projects\RelationManagers\PropertiesRelationManager;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ProjectsTable
+class PropertiesTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,6 +18,14 @@ class ProjectsTable
             ->columns([
                 TextColumn::make('title')
                     ->searchable(),
+                TextColumn::make('project.title')
+                    ->searchable()
+                    ->default('-')
+                    ->hiddenOn(PropertiesRelationManager::class)
+                    ->url(fn ($record) => $record->project
+                        ? ProjectResource::getUrl('view', ['record' => $record->project])
+                        : null
+                    ),
                 TextColumn::make('description')
                     ->default('-')
                     ->limit(50 )
@@ -30,17 +39,13 @@ class ProjectsTable
                         // Only render the tooltip if the column contents exceeds the length limit.
                         return $state;
                     }),
-                TextColumn::make('properties_count')
-                    ->label('Properties')
-                    ->counts('properties')
-                    ->default(0),
                 Columns::createdBy(),
                 Columns::createdAtSince(),
                 Columns::updatedAtSince(),
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make()->slideOver(),
+                EditAction::make(),
             ]);
     }
 }
