@@ -26,15 +26,13 @@ class Project extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function CreatedBy(): BelongsTo
+    public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function Properties(): HasMany
+    public function properties(): HasMany
     {
         return $this->hasMany(Property::class);
     }
-
-
 }

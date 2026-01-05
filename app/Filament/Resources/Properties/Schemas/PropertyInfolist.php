@@ -17,10 +17,12 @@ class PropertyInfolist
                 Section::make()
                     ->columnSpanFull()
                     ->components([
-                        Grid::make()
+                        Grid::make(3)
                             ->components([
                                 TextEntry::make('title'),
-                                TextEntry::make('price'),
+                                TextEntry::make('price')
+                                    ->money('NGN'),
+                                TextEntry::make('units')
                             ]),
                         TextEntry::make('description')
                             ->placeholder('-')

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->decimal('price')->nullable();
+            $table->decimal('price', 15)->nullable();
             $table->foreignId('project_id')
                 ->nullable()
                 ->constrained()

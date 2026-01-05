@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Property extends Model
@@ -16,6 +17,7 @@ class Property extends Model
         'price',
         'project_id',
         'title',
+        'units'
     ];
 
     protected $casts = [
@@ -27,15 +29,22 @@ class Property extends Model
         'project_id' => 'integer',
         'title' => 'string',
         'updated_at' => 'datetime',
+        'units' => 'integer'
     ];
 
-    public function CreatedBy(): BelongsTo
+    public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function Project(): BelongsTo
+    public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    public function clients(): BelongsToMany
+    {
+//        return $this->belongsToMany(Client::class)->using(ClientProperty::class);
+        return $this->belongsToMany(Client::class, 'client_property', 'property_id', 'client_id');
     }
 }

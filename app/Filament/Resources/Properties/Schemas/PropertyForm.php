@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Properties\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Schema;
 
 class PropertyForm
@@ -15,9 +16,14 @@ class PropertyForm
             ->components([
                 TextInput::make('title')
                     ->required(),
-                TextInput::make('price')
-                    ->numeric()
-                    ->inputMode('decimal'),
+                Grid::make()
+                    ->components([
+                        TextInput::make('price')
+                            ->numeric()
+                            ->inputMode('decimal'),
+                        TextInput::make('units')
+                            ->numeric()
+                    ]),
                 Textarea::make('description')
                     ->rows(5)
                     ->columnSpanFull(),

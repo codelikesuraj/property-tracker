@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Projects\Tables;
+namespace App\Filament\Resources\Clients\Tables;
 
 use App\Filament\Helpers\Columns;
 use Filament\Actions\EditAction;
@@ -8,15 +8,15 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ProjectsTable
+class ClientsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
-                    ->searchable(),
-                TextColumn::make('description')
+                TextColumn::make('name'),
+                TextColumn::make('phone'),
+                TextColumn::make('address')
                     ->default('-')
                     ->limit(50 )
                     ->tooltip(function (TextColumn $column): ?string {
@@ -33,7 +33,6 @@ class ProjectsTable
                     ->label('Properties')
                     ->counts('properties')
                     ->default(0),
-                Columns::createdBy(),
                 Columns::createdAtSince(),
                 Columns::updatedAtSince(),
             ])
