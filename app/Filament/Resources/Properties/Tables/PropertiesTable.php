@@ -39,6 +39,8 @@ class PropertiesTable
                         // Only render the tooltip if the column contents exceeds the length limit.
                         return $state;
                     }),
+                TextColumn::make('price')
+                    ->numeric(),
                 Columns::createdBy(),
                 Columns::createdAtSince(),
                 Columns::updatedAtSince(),
